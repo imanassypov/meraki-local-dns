@@ -4,5 +4,8 @@ bruno-collection/environments/Production.bru
 # Bash script config with secrets
 bash-scripts/config.env
 
+# Copilot instructions (may contain org-specific info)
+.github/copilot-instructions.md
+
 # macOS
 .DS_Store
