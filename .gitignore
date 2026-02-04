@@ -1,5 +1,8 @@
 # Bruno environments with secrets
 bruno-collection/environments/Production.bru
 
+# Bash script config with secrets
+bash-scripts/config.env
+
 # macOS
 .DS_Store
