@@ -1,0 +1,72 @@
+meta {
+  name: Assign Profile to Networks
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/organizations/{{organizationId}}/appliance/dns/local/profiles/assignments/bulkCreate
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "items": [
+      {
+        "network": {
+          "id": "{{networkId}}"
+        },
+        "profile": {
+          "id": "{{profileId}}"
+        }
+      }
+    ]
+  }
+}
+
+docs {
+  # Assign Local DNS Profile to Networks
+  
+  Bulk assign a local DNS profile to networks in the organization.
+  
+  ## Prerequisites
+  - MX running firmware 19.1+
+  - NAT/Routed Mode
+  - "Proxy to Upstream DNS" Enabled for the respective subnet
+  - Non-Template MX network (Templates are not supported)
+  
+  ## Request Body
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | items | array | Yes | List of network-profile assignments |
+  | items[].network.id | string | Yes | Network ID to assign |
+  | items[].profile.id | string | Yes | Profile ID to assign to the network |
+  
+  ## Response (200)
+  Returns the created assignments with assignment IDs.
+  
+  ```json
+  {
+    "items": [
+      {
+        "assignmentId": "123456",
+        "network": { "id": "N_123456" },
+        "profile": { "id": "1234" }
+      }
+    ]
+  }
+  ```
+  
+  ## Note
+  - Multiple networks can be assigned in a single request
+  - Attempting to apply to an MX bound to a template may result in the API call succeeding but no configuration being applied
+  
+  ## Reference
+  https://developer.cisco.com/meraki/api-v1/bulk-organization-appliance-dns-local-profiles-assignments-create/
+}

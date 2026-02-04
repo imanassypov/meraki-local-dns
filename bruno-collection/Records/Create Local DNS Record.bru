@@ -1,0 +1,64 @@
+meta {
+  name: Create Local DNS Record
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/organizations/{{organizationId}}/appliance/dns/local/records
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "hostname": "www.example.local",
+    "address": "10.1.1.100",
+    "profile": {
+      "id": "{{profileId}}"
+    }
+  }
+}
+
+docs {
+  # Create Local DNS Record
+  
+  Create a new local DNS record associated with a profile.
+  
+  ## Prerequisites
+  - MX running firmware 19.1+
+  - "Proxy to Upstream DNS" enabled for the respective subnet
+  - Existing DNS profile
+  
+  ## Request Body
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | hostname | string | Yes | Hostname for the DNS record (e.g., www.example.local) |
+  | address | string | Yes | IP address for the DNS record |
+  | profile.id | string | Yes | Profile ID to associate the record with |
+  
+  ## Response (201)
+  Returns the created record with its ID.
+  
+  ```json
+  [
+    {
+      "recordId": "12345",
+      "hostname": "www.example.local",
+      "address": "10.1.1.100",
+      "profile": { "id": "1" }
+    }
+  ]
+  ```
+  
+  ## Limits
+  - Maximum 1024 local DNS records per MX device
+  
+  ## Reference
+  https://developer.cisco.com/meraki/api-v1/create-organization-appliance-dns-local-record/
+}

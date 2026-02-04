@@ -1,0 +1,36 @@
+meta {
+  name: Delete Local DNS Profile
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/organizations/{{organizationId}}/appliance/dns/local/profiles/{{profileId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # Delete Local DNS Profile
+  
+  Deletes a local DNS profile from the organization.
+  
+  ## Path Parameters
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | organizationId | string | Yes | Organization ID |
+  | profileId | string | Yes | Profile ID to delete |
+  
+  ## Response (204)
+  Returns empty response on successful deletion.
+  
+  ## Note
+  Ensure no networks are assigned to this profile before deletion.
+  
+  ## Reference
+  https://developer.cisco.com/meraki/api-v1/delete-organization-appliance-dns-local-profile/
+}

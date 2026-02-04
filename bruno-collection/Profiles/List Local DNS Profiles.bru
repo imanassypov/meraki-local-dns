@@ -1,0 +1,45 @@
+meta {
+  name: List Local DNS Profiles
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/organizations/{{organizationId}}/appliance/dns/local/profiles
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~profileIds: 
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # List Local DNS Profiles
+  
+  Fetch all local DNS profiles used in the organization.
+  
+  ## Query Parameters
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | profileIds | array | No | Filter results by specific profile IDs |
+  
+  ## Response (200)
+  Returns an array of DNS profiles.
+  
+  ```json
+  [
+    {
+      "profileId": "123456",
+      "name": "Default profile"
+    }
+  ]
+  ```
+  
+  ## Reference
+  https://developer.cisco.com/meraki/api-v1/get-organization-appliance-dns-local-profiles/
+}

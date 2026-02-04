@@ -1,0 +1,47 @@
+meta {
+  name: List Local DNS Records
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/organizations/{{organizationId}}/appliance/dns/local/records
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~profileIds: 
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # List Local DNS Records
+  
+  Fetch all DNS records used in local DNS profiles.
+  
+  ## Query Parameters
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | profileIds | array | No | Filter results by specific profile IDs |
+  
+  ## Response (200)
+  Returns an array of DNS records.
+  
+  ```json
+  [
+    {
+      "recordId": "12345",
+      "hostname": "www.test.com",
+      "address": "10.1.1.0",
+      "profile": { "id": "1" }
+    }
+  ]
+  ```
+  
+  ## Reference
+  https://developer.cisco.com/meraki/api-v1/get-organization-appliance-dns-local-records/
+}

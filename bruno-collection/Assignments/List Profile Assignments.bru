@@ -1,0 +1,39 @@
+meta {
+  name: List Profile Assignments
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/organizations/{{organizationId}}/appliance/dns/local/profiles/assignments
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # List Local DNS Profile Assignments
+  
+  Fetch all profile-to-network assignments in the organization.
+  
+  ## Response (200)
+  Returns an array of assignments showing which networks are assigned to which profiles.
+  
+  ```json
+  {
+    "items": [
+      {
+        "assignmentId": "123456",
+        "network": { "id": "N_123456" },
+        "profile": { "id": "1234" }
+      }
+    ]
+  }
+  ```
+  
+  ## Reference
+  https://developer.cisco.com/meraki/api-v1/get-organization-appliance-dns-local-profiles-assignments/
+}

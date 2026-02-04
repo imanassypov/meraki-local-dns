@@ -1,0 +1,13 @@
+meta {
+  name: Meraki Local DNS
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: X-Cisco-Meraki-API-Key
+  value: {{MERAKI_API_KEY}}
+  placement: header
+}

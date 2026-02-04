@@ -1,0 +1,51 @@
+meta {
+  name: Create Local DNS Profile
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/organizations/{{organizationId}}/appliance/dns/local/profiles
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "name": "Default profile"
+  }
+}
+
+docs {
+  # Create Local DNS Profile
+  
+  Creates a new local DNS profile in the organization.
+  
+  ## Prerequisites
+  - MX running firmware 19.1+
+  - NAT/Routed Mode
+  - Non-Template MX network
+  
+  ## Request Body
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | name | string | Yes | Name of the DNS profile |
+  
+  ## Response (201)
+  Returns the created profile with its ID.
+  
+  ```json
+  {
+    "profileId": "123456",
+    "name": "Default profile"
+  }
+  ```
+  
+  ## Reference
+  https://developer.cisco.com/meraki/api-v1/create-organization-appliance-dns-local-profile/
+}

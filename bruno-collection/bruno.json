@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Meraki Local DNS",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

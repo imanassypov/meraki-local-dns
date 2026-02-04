@@ -1,0 +1,33 @@
+meta {
+  name: Delete Local DNS Record
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/organizations/{{organizationId}}/appliance/dns/local/records/{{recordId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # Delete Local DNS Record
+  
+  Deletes a local DNS record from the organization.
+  
+  ## Path Parameters
+  | Field | Type | Required | Description |
+  |-------|------|----------|-------------|
+  | organizationId | string | Yes | Organization ID |
+  | recordId | string | Yes | Record ID to delete |
+  
+  ## Response (204)
+  Returns empty response on successful deletion.
+  
+  ## Reference
+  https://developer.cisco.com/meraki/api-v1/delete-organization-appliance-dns-local-record/
+}

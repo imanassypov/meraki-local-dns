@@ -1,0 +1,5 @@
+# Bruno environments with secrets
+bruno-collection/environments/Production.bru
+
+# macOS
+.DS_Store
